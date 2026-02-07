@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Thang điểm MORSE - Nguy cơ té ngã</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="D:\VAS\forms\common\common.css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+    * { box-sizing: border-box; margin:0; padding:0; }
+body {
+    font-family: 'Roboto', sans-serif;
+    background:#f9fbfc;
+    padding:10px;
+    color:#2d3436;
+    line-height:1.4;
+
+}
+.container {
+    max-width: 880px;
+    margin:auto;
+    background:#fff;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 6px 25px rgba(0,0,0,0.08);
+    border:1px solid #dfe6e9;
+    min-height: 100vh;
+}
+.logo {
+    display: block;
+    flex-shrink: 0;
+}
+.logo img {
+    height: 60px;               /* chiều cao logo, điều chỉnh theo ý */
+    width: auto;                /* giữ tỷ lệ */
+    max-width: 180px;           /* giới hạn rộng nếu ảnh to */
+    object-fit: contain;        /* không méo */
+    transition: transform 0.3s;
+}
+.header-row {
+    display: flex;
+    align-items: center;          /* căn giữa theo chiều dọc */
+    justify-content: center;      /* căn giữa theo chiều ngang */
+    gap: 20px;                    /* khoảng cách giữa logo và tiêu đề */
+    margin-bottom: 24px;          /* khoảng cách với phần dưới */
+    flex-wrap: wrap;              /* nếu màn hình nhỏ quá thì xuống dòng */
+}
+
+.header-row h1 {
+    margin: 0;                    /* bỏ margin mặc định của h1 */
+    text-align: left;             /* để chữ không bị giữa nếu muốn lệch trái */
+    line-height: 1.2;
+}
+
+.header-row .logo img {
+    height: 70px;                 /* tăng nhẹ chiều cao logo cho cân đối */
+    max-width: 200px;             /* điều chỉnh nếu logo quá to */
+}
+h1 {
+    text-align:center;
+    color:#c2185b;
+    font-size:24px;
+    margin-bottom:4px;
+    font-weight:700;
+}
+h1 small {
+    display:block;
+    font-size:15px;
+    color:#636e72;
+    margin-top:4px;
+}
+
+.section {
+    margin-bottom:18px;
+}
+.section h3 {
+    color:#c2185b;
+    font-size:17px;
+    margin-bottom:12px;
+    padding-bottom:5px;
+    border-bottom:3px solid #c2185b;
+    display:inline-block;
+    font-weight:700;
+}
+.section h4 {
+        color:#c2185b;
+        font-size:14px;
+        margin:20px 0 8px;
+        font-weight:700;
+}
+
+.info-grid { display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.info-full { grid-column: 1 / -1; }
+.info-row { display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    align-items: center;
+}
+label {
+    font-weight:600;
+    font-size:13px;
+    color:#2d3436;
+}
+input, select {
+    width:100%;
+    padding:9px 12px;
+    border:1.5px solid #b2bec3;
+    border-radius:8px;
+    font-size:12px;
+    background:#fdfdff;
+}
+input:focus, select:focus {
+    border-color:#c2185b;
+    outline:none;
+}
+
+.qrow {
+    display: flex;
+    align-items: center;
+    background:#f8f9fc;
+    padding:12px 14px;
+    border-radius:10px;
+    margin-bottom:10px;
+    border-left:5px solid #c2185b;
+    min-height:56px;
+}
+.qrow h4 {
+    flex:1;
+    font-size:13px;
+    color:#c2185b;
+    font-weight:600;
+    margin:0;
+    padding-right:16px;
+}
+
+.myselect {
+    position: relative;
+    width: 280px;
+    max-width: 100%;
+}
+.myselect .selected {
+    background: white;
+    padding: 11px 30px 11px 16px;
+    border: 1.5px solid #b2bec3;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: normal;
+    line-height: 1.4;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+.myselect .selected:focus { border-color:#c2185b; }
+.myselect::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 14px; color: #666;
+    pointer-events: none;
+}
+.myselect .options {
+    position: absolute;
+    top: 100%; left: 0;
+    right: 0;
+    background: white;
+    border: 1.5px solid #c2185b;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 99;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.myselect.open .options { display: block; }
+.myselect .options div {
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: normal;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.myselect .options div:hover { background: #fdf0f5; }
+.myselect .options div:last-child { border-bottom: none; }
+.point {
+    min-width:32px;
+    height:32px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white; font-weight:500;
+    font-size:13px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
+}
+.p0 { background:#4caf50; }
+.p5, .p10, .p15 { background:#ff9800; }
+.p20, .p25 { background:#ff5722; }
+.p30 { background:#d32f2f; }
+.bottom {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin:20px 0;
+    gap:16px;
+    flex-wrap:wrap;
+}
+.result {
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+    color:white;
+    padding:20px 12px;
+    border-radius:10px;
+    text-align:center;
+    width:300px;
+    box-shadow:0 10px 30px rgba(194,24,91,0.4);
+}
+.result .big {
+    font-size:36px;
+    font-weight:900;
+    margin:12px 0 8px;
+    line-height:1;
+}
+.result .level {
+    font-size:14px;
+    font-weight:700;
+}
+.sign {
+    width:320px;
+    text-align:center;
+    padding-top:4px;
+}
+.sign h4 {
+    color:#c2185b;
+    font-size:14px;
+    margin-bottom:4px;
+}
+.sign p {
+    color:#666;
+    font-style:italic;
+    margin-bottom:4px;
+    font-size:14px;
+}
+.sign .line {
+    height:80px;
+    border-bottom:1px solid #222;
+    width:220px;
+    margin:8px auto;
+}
+.print-btn {
+    text-align:center;
+    margin:24px 0 16px;
+}
+.print-btn {
+    text-align: center;
+    margin: 30px 0 20px;          /* tăng margin trên/dưới cho thoáng */
+}
+
+.print-btn button {
+    background: linear-gradient(135deg, #ec407a, #ab47bc);   /* hồng → tím */
+    color: white;
+    border: none;
+    border-radius: 50px;          /* giữ bo tròn đẹp như cũ */
+    padding: 14px 80px;           /* giữ kích thước lớn, dễ bấm */
+    font-size: 16px;
+    font-weight: 600;             /* hơi đậm hơn cho nổi bật */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    min-width: 220px;             /* tránh co lại quá khi text dài */
+}
+
+.print-btn button:hover {
+    background: linear-gradient(135deg, #1565c0, #1e88e5);   /* xanh dương đậm → sáng */
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 12px 24px rgba(21, 101, 192, 0.35);
+    color: #fff;
+}
+
+.print-btn button:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+}
+.print-btn button {
+    position: relative;
+    overflow: hidden;
+}
+
+.print-btn button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+}
+
+.print-btn button:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: 0s;
+}
+
+
+
+.intervention-list { 
+    font-size:13px; 
+    margin-top:12px; 
+    padding-left:0;
+    counter-reset: item;
+}
+.intervention-list li { 
+    margin-bottom:10px; 
+    padding-left:28px; 
+    position:relative; 
+    list-style: none;
+}
+.intervention-list li::before { 
+    content: counter(item) ". "; 
+    counter-increment: item; 
+    position:absolute; 
+    left:0; 
+    font-weight:bold; 
+    color:#c2185b;
+}
+@media print {
+@page {
+    size: A4 portrait;
+    margin: 10mm;
+}
+body { 
+    background:white; 
+    padding:0; 
+    font-size:11pt;
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact;
+}
+.container {
+    max-width:none;
+    box-shadow:none;
+    border:none;
+    padding:10mm;
+    margin:0;
+}
+.print-btn, .myselect::after { display:none !important; }
+.myselect .selected {
+    border:1.5px solid #c2185b !important;
+    background:white !important;
+    color:black !important;
+}
+    .point { color:#fff !important; }
+    .result {
+        background:#ffebee !important;
+        color:#000 !important;
+        border:2px solid #c2185b;
+        }
+    .bottom { margin:30px 0 !important; }
+}
+
+@media (max-width: 680px) {
+.qrow { flex-direction:column; align-items:stretch; min-height:auto; padding:14px; }
+.myselect { width:100%; margin-top:10px; }
+.point { margin:12px auto 0; }
+.bottom { flex-direction:column; align-items:center; }
+.result, .sign { width:100%; max-width:400px; }
+.info-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body onload="calc()">
+
+<div class="container">
+    <div class="header-row">
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/Hr1BFctF/images.jpg" alt="Logo NVYT" />
+        </a>
+        <h1>THANG ĐIỂM MORSE<br><small>Đánh giá nguy cơ té ngã (Morse Fall Scale)</small></h1>
+    </div>
+
+    <div class="section">
+        <h3>THÔNG TIN BỆNH NHÂN</h3>
+        <div class="info-grid">
+            <div class="info-full"><div class="info-row"><label>Họ và tên</label><input type="text" placeholder="Nhập họ và tên bệnh nhân"></div></div>
+            <div><div class="info-row"><label>Giới tính</label><select><option>Nam</option><option>Nữ</option></select></div></div>
+            <div><div class="info-row"><label>Ngày đánh giá</label><input type="text" id="date" readonly></div></div>
+            <div class="info-full"><div class="info-row"><label>Chọn khoa:</label>
+                <select>
+                <option>-- Mời Chọn khoa --</option>
+                <option>Khoa Cấp cứu</option>
+                <option>Khoa N1</option>
+                <option>Khoa N2</option>
+                <option>Khoa N3</option>
+                <option>Khoa N4</option>
+                <option>Nội B</option>
+                <option>Nội C</option>
+                <option>Nội D</option>
+                <option>Khoa TT/HIV</option>
+            </select></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>ĐÁNH GIÁ NGUY CƠ TÉ NGÃ</h3>
+
+        <div class="qrow"><h4>1. Tuổi</h4>
+            <div class="myselect" data-value="0">
+                <div class="selected">< 60 tuổi</div>
+                <div class="options">
+                    <div data-value="0">< 60 tuổi</div>
+                    <div data-value="5">60 - 69 tuổi</div>
+                    <div data-value="10">70 - 79 tuổi</div>
+                    <div data-value="15">≥ 80 tuổi</div>
+                </div>
+            </div>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>2. Tiền sử té ngã (trong 3 tháng qua)</h4>
+            <div class="myselect" data-value="0">
+                <div class="selected">Không</div>
+                <div class="options">
+                    <div data-value="0">Không</div>
+                    <div data-value="25">Có</div>
+                </div>
+            </div>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>3. Phương tiện hỗ trợ khi di chuyển</h4>
+            <div class="myselect" data-value="0">
+                <div class="selected">Tự đi lại không cần hỗ trợ hoặc hoàn toàn bất động</div>
+                <div class="options">
+                    <div data-value="0">Tự đi lại không cần hỗ trợ hoặc hoàn toàn bất động</div>
+                    <div data-value="15">Cần dùng nạng, gậy, khung tập,xe đẩy, hoặc cáng để đi lại</div>
+                    <div data-value="30">Cần vịn vào thành giường, đồ vật hoặc người dìu để đi lại</div>
+                </div>
+            </div>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>4. Điều trị thuốc tĩnh mạch hoặc Heparin hoặc sử dụng 1 hoặc nhiều hơn thuốc đang còn tác dụng, làm tăng nguy cơ ngã</h4>
+            <div class="myselect" data-value="0">
+                <div class="selected">Không</div>
+                <div class="options">
+                    <div data-value="0">Không</div>
+                    <div data-value="20">Có</div>
+                </div>
+            </div>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>5. Dáng đi</h4>
+            <div class="myselect" data-value="0">
+                <div class="selected">Bình thường hoặc  không có khả năng di chuyển</div>
+                <div class="options">
+                    <div data-value="0">Bình thường hoặc không có khả năng di chuyển</div>
+                    <div data-value="10">Đi lại khó khăn, cần tựa để giữ thăng bằng</div>
+                    <div data-value="20">Rất yếu, không vững, khó đứng dậy</div>
+                </div>
+            </div>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>6. Tình trạng nhận thức</h4>
+            <div class="myselect" data-value="0">
+                <div class="selected">Tỉnh táo, định hướng được</div>
+                <div class="options">
+                    <div data-value="0">Tỉnh táo, định hướng được</div>
+                    <div data-value="15">Lú lẫn, không định hướng được</div>
+                </div>
+            </div>
+            <div class="point p0">0</div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="result">
+            <div style="font-size:13px; opacity:0.95;">TỔNG ĐIỂM MORSE</div>
+            <div class="big" id="total">0</div>
+            <div class="level" id="level">NGUY CƠ THẤP</div>
+        </div>
+        <div class="sign">
+            <h4>Người đánh giá</h4>
+            <p>(Ký và ghi rõ họ tên)</p>
+            <div class="line"></div>
+        </div>
+    </div>
+
+
+
+<!-- Phần can thiệp  -->
+    <div class="section" id="interventions">
+        <h3>BIỆN PHÁP CAN THIỆP PHÒNG NGỪA TÉ NGÃ</h3>
+        <div class="intervention-list" id="interventionContent"></div>
+    </div>
+
+    <div class="sign" style="margin:30px auto 0; text-align:center; max-width:400px;">
+        <h4>Người thực hiện can thiệp</h4>
+        <p>(Ký và ghi rõ họ tên)</p>
+        <div class="line"></div>
+    </div>
+    <div class="print-btn">
+        <button onclick="saveToDriveAndPrint()">In Phiếu</button>
+    </div>
+</div>
+
+<script>
+document.getElementById('date').value = new Date().toLocaleDateString('vi-VN');
+
+const interventions = [
+    "Thông báo cho người bệnh và người nhà người bệnh về mức độ nguy cơ té ngã.",
+    "Đảm bảo sàn nhà khô ráo, cảnh báo nơi có nguy cơ té ngã.",
+    "Đồ dùng sắp xếp gọn gàng, đảm bảo đồ dùng cá nhân trong tầm tay của người bệnh.",
+    "Hướng dẫn người bệnh sử dụng dép có độ bám tốt, cẩn thận khi đi vào nhà vệ sinh.",
+    "Hạ giường thấp nhất (nếu có thể), khóa chân giường, kéo xong chắn giường. Khuyên người bệnh tránh thay đổi tư thế đột ngột.",
+    "Song chắn giường luôn được kéo lên.",
+    "Trợ giúp người bệnh trong đi lại và vận chuyển.",
+    "Điều dưỡng luôn hỗ trợ người bệnh khi có thiết bị y tế đi kèm.",
+    "Bố trí vật dụng sinh hoạt cần thiết gần người bệnh.",
+    "Hỗ trợ người bệnh trong sinh hoạt hằng ngày. Chú ý người bệnh trong khi đi vệ sinh.",
+    "Khuyến khích người bệnh khi ngồi phải có người bên cạnh và thông báo ngay cho điều dưỡng khi rời khỏi phòng.",
+    "Hỗ trợ người bệnh khi di chuyển, trong lúc tắm, đi vệ sinh.",
+    "Cố định người bệnh nếu cần thiết.",
+];
+
+function updateInterventions(total) {
+    let maxIndex = 0;
+    let title = "";
+
+    if (total < 25) {
+        maxIndex = 5;   // 6 biện pháp (index 0-5)
+        title = "NGUY CƠ THẤP";
+    } else if (total <= 44) {
+        maxIndex = 9;   // 10 biện pháp (index 0-9)
+        title = "NGUY CƠ TRUNG BÌNH";
+    } else {
+        maxIndex = 13;  // 14 biện pháp (index 0-13)
+        title = "NGUY CƠ CAO";
+    }
+
+    let html = `<p style="font-weight:bold; color:#c2185b; margin-bottom:12px;">MỨC NGUY CƠ: ${title} (Tổng điểm: ${total})</p>`;
+    html += '<ul>';
+    for (let i = 0; i <= maxIndex; i++) {
+        html += `<li>${interventions[i]}</li>`;
+    }
+    html += '</ul>';
+
+    document.getElementById('interventionContent').innerHTML = html;
+}
+
+document.querySelectorAll('.myselect').forEach(sel => {
+    const selected = sel.querySelector('.selected');
+    const optionsContainer = sel.querySelector('.options');
+    const items = optionsContainer.querySelectorAll('div');
+
+    // Khởi tạo mặc định
+    if (items.length > 0) {
+        selected.innerHTML = items[0].innerHTML;
+        sel.dataset.value = items[0].dataset.value || '0';
+    }
+
+    // Mở/đóng dropdown
+    selected.addEventListener('click', (e) => {
+        e.stopPropagation(); // Ngăn lan tỏa lên document
+        document.querySelectorAll('.myselect').forEach(s => {
+            if (s !== sel) s.classList.remove('open');
+        });
+        sel.classList.toggle('open');
+    });
+
+    // Chọn option
+    items.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.stopPropagation();
+            selected.innerHTML = item.innerHTML;
+            sel.dataset.value = item.dataset.value || '0';
+            sel.classList.remove('open');
+            calc();
+        });
+    });
+});
+
+// Đóng tất cả dropdown khi click ra ngoài
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.myselect')) {
+        document.querySelectorAll('.myselect').forEach(sel => {
+            sel.classList.remove('open');
+        });
+    }
+});
+
+function calc() {
+    let total = 0;
+    document.querySelectorAll('.qrow').forEach(row => {
+        const val = parseInt(row.querySelector('.myselect').dataset.value) || 0;
+        total += val;
+        const pointDiv = row.querySelector('.point');
+        if (pointDiv) {
+            pointDiv.textContent = val;
+            pointDiv.className = 'point p' + (val === 0 ? '0' : val); // tránh class lỗi nếu val=0
+        }
+    });
+
+    const totalEl = document.getElementById('total');
+    if (totalEl) totalEl.textContent = total;
+
+    const levelEl = document.getElementById('level');
+    if (levelEl) {
+        const level = total < 25 ? "NGUY CƠ THẤP" : total <= 44 ? "NGUY CƠ TRUNG BÌNH" : "NGUY CƠ CAO";
+        levelEl.textContent = level;
+    }
+
+    updateInterventions(total);
+}
+
+calc();
+function saveToDriveAndPrint() {
+    // Thu thập dữ liệu
+    const data = {
+        name: document.querySelector('input[placeholder="Nhập họ và tên bệnh nhân"]').value.trim() || "Chưa nhập",
+        gender: document.querySelector('select').value || "",
+        date: document.getElementById('date').value,
+        department: document.querySelectorAll('select')[1].value || "Chưa chọn",
+        ageCategory: document.querySelectorAll('.myselect')[0].querySelector('.selected').innerHTML,
+        fallHistory: document.querySelectorAll('.myselect')[1].querySelector('.selected').innerHTML,
+        mobilityAid: document.querySelectorAll('.myselect')[2].querySelector('.selected').innerHTML,
+        ivTherapy: document.querySelectorAll('.myselect')[3].querySelector('.selected').innerHTML,
+        gait: document.querySelectorAll('.myselect')[4].querySelector('.selected').innerHTML,
+        mentalStatus: document.querySelectorAll('.myselect')[5].querySelector('.selected').innerHTML,
+        totalScore: document.getElementById('total').textContent,
+        level: document.getElementById('level').textContent
+    };
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwlWpKUB4RYr9gwoOdcnlYyAcU-mSc3nEmU3LawbGg8m--QscHRuYcmbuTpOmVpnxs/exec";  // ← dán URL Web App vào đây
+
+    fetch(SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",                    // Bắt buộc để tránh lỗi CORS
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"  // Quan trọng để tránh preflight
+        },
+        body: JSON.stringify(data)
+    })
+    .then(() => {
+        alert("Đã gửi lưu lên Google Drive thành công!\nBắt đầu in phiếu...");
+        window.print();
+    })
+    .catch(err => {
+        console.error("Lỗi gửi dữ liệu:", err);
+        alert("Không thể lưu lên Drive lúc này (lỗi mạng hoặc quyền), nhưng vẫn in phiếu được.");
+        window.print();
+    });
+}
+</script>
+</body>
+</html>

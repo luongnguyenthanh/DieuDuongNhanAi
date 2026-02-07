@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lượng giá mức độ đau VAS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="D:\VAS\test\styles\ThangdauVAS.css">
+
+    <!-- Google Fonts vẫn giữ nguyên -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="header-row">
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/Hr1BFctF/images.jpg" alt="Logo NVYT">
+        </a>
+        <h1>LƯỢNG GIÁ MỨC ĐỘ ĐAU VAS<br><small>VISUAL ANALOGUE SCALE</small></h1>
+    </div>
+
+    <div class="section">
+        <h3>THÔNG TIN BỆNH NHÂN</h3>
+        <div class="grid">
+            <div class="full"><label>Họ và tên</label><input type="text" id="patientName"></div>
+            <div class="full">
+                <div class="info-row">
+                    <div><label>Tuổi</label><input type="number" id="age"></div>
+                    <div><label>Giới tính</label><select id="gender"><option>Nam</option><option>Nữ</option></select></div>
+                    <div><label>Ngày lượng giá</label><input type="text" id="evalDate" readonly></div>
+                    <div><label>Khoa</label>
+                        <select id="khoa">
+                            <option>-- Mời chọn khoa --</option>
+                            <option>Khoa Cấp cứu</option>
+                            <option>Khoa N1</option>
+                            <option>Khoa N2</option>
+                            <option>Khoa N3</option>
+                            <option>Khoa N4</option>
+                            <option>Nội B</option>
+                            <option>Nội C</option>
+                            <option>Nội D</option>
+                            <option>Khoa TT/HIV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>LƯỢNG GIÁ MỨC ĐỘ ĐAU</h3>
+
+        <div class="slider-box">
+            <h4 style="margin:0 0 8px; color:#c2185b;">Mức độ đau lúc nghỉ ngơi</h4>
+            <div id="slider-rest" class="vas-slider"></div>
+            <div class="slider-labels">
+                <span>Không đau</span>
+                <span class="slider-value" id="value-rest">0</span>
+                <span>Đau chịu không nổi</span>
+            </div>
+        </div>
+
+        <div class="slider-box">
+            <h4 style="margin:0 0 8px; color:#c2185b;">Mức độ đau lúc vận động / ho / trở mình</h4>
+            <div id="slider-move" class="vas-slider"></div>
+            <div class="slider-labels">
+                <span>Không đau</span>
+                <span class="slider-value" id="value-move">0</span>
+                <span>Đau chịu không nổi</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="result-area">
+            <div class="result-header">Điểm số kết quả dành cho người lượng giá thu thập</div>
+            <div class="result-grid">
+                <div class="result-cell">
+                    <div class="result-label">VAS khi nghỉ ngơi</div>
+                    <div class="result-value" id="result-rest">0</div>
+                </div>
+                <div class="result-cell">
+                    <div class="result-label">VAS khi vận động</div>
+                    <div class="result-value" id="result-move">0</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sign-area">
+            <h4>Người đánh giá ký tên</h4>
+            <p>(Ghi rõ họ và tên)</p>
+            <div class="sign-line"></div>
+        </div>
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">In Phiếu</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+<script src="D:\VAS\test\json\ThangdauVAS.js"></script>
+</body>
+</html>

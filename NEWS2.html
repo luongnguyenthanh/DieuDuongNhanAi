@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+    <title>Thang điểm NEWS2 - Không bao giờ NaN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="D:\VAS\test\styles\NEWS2.css">   <!-- file CSS tách riêng -->
+</head>
+<body>
+
+<div class="container">
+    <div class="header-row">
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/Hr1BFctF/images.jpg" alt="Logo NVYT" />
+        </a>
+        <h1>THANG ĐIỂM NEWS2<br><small>National Early Warning Score 2</small></h1>
+    </div>
+
+    <div class="section">
+        <h3>THÔNG TIN BỆNH NHÂN</h3>
+        <div class="grid">
+            <div class="full"><label>Họ và tên</label><input type="text"></div>
+            <div class="full">
+                <div class="info-row">
+                    <div><label>Tuổi</label><input type="number"></div>
+                    <div><label>Giới tính</label><select><option>Nam</option><option>Nữ</option></select></div>
+                    <div><label>Ngày đánh giá</label><input type="text" id="date" readonly></div>
+                    <div><label>Khoa</label>
+                        <select id="khoa" name="khoa">
+                            <option>-- Mời Chọn khoa --</option>
+                            <option>Khoa Cấp cứu</option>
+                            <option>Khoa N1</option>
+                            <option>Khoa N2</option>
+                            <option>Khoa N3</option>
+                            <option>Khoa N4</option>
+                            <option>Nội B</option>
+                            <option>Nội C</option>
+                            <option>Nội D</option>
+                            <option>Khoa TT/HIV</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>ĐÁNH GIÁ NEWS2</h3>
+
+        <div class="qrow"><h4>1. Nhịp thở (lần/phút)</h4>
+            <select onchange="calc()">
+                <option value="0" selected>12–20</option>
+                <option value="1">9–11</option>
+                <option value="2">21–24</option>
+                <option value="3">≤8 hoặc ≥25</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>2. SpO₂ (%) - Không có tình trạng suy hô hấp do tăng CO2 máu</h4>
+            <select onchange="calc()">
+                <option value="0" selected>≥96%</option>
+                <option value="1">94–95%</option>
+                <option value="2">92–93%</option>
+                <option value="3">≤91%</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>3. SpO₂ (COPD) - Tình trạng trong Suy hô hấp do tăng CO2 máu</h4>
+            <select onchange="calc()">
+                <option value="0" selected>88–92% (Không thở O₂) / ≥93% (Thở khí phòng)</option>
+                <option value="1">86–87% (Không thở O₂)/ 93–94% (Thở O₂)</option>
+                <option value="2">84–85% (Không thở O₂)/ 95–96% (Thở O₂)</option>
+                <option value="3">≤83% (Không thở O₂)/ ≥97% (Thở O₂)</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>4. Thở Oxy?</h4>
+            <select onchange="calc()">
+                <option value="0" selected>Thở khí phòng</option>
+                <option value="2">Thở Oxy</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>5. HA tâm thu (mmHg)</h4>
+            <select onchange="calc()">
+                <option value="0" selected>111–219</option>
+                <option value="1">101–110</option>
+                <option value="2">91–100</option>
+                <option value="3">≤90 hoặc ≥220</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>6. Mạch (lần/phút)</h4>
+            <select onchange="calc()">
+                <option value="0" selected>51–90</option>
+                <option value="1">41–50 hoặc 91–110</option>
+                <option value="2">111–130</option>
+                <option value="3">≤40 hoặc ≥131</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>7. Ý thức</h4>
+            <select onchange="calc()">
+                <option value="0" selected>Alert (Tỉnh)</option>
+                <option value="3">CVPU (Confusion, Voice, Pain, Unresponsive)</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+
+        <div class="qrow"><h4>8. Nhiệt độ (°C)</h4>
+            <select onchange="calc()">
+                <option value="0" selected>36.1–38.0</option>
+                <option value="1">35.1–36.0 hoặc 38.1–39.0</option>
+                <option value="2">≥39.1</option>
+                <option value="3">≤35.0</option>
+            </select>
+            <div class="point p0">0</div>
+        </div>
+    </div>
+
+    <div class="bottom">
+        <div class="result">
+            <div>TỔNG ĐIỂM NEWS2</div>
+            <div class="big" id="total">0</div>
+            <div class="level" id="level">NGUY CƠ THẤP</div>
+        </div>
+
+        <div class="sign">
+            <h4>Người đánh giá ký tên</h4>
+            <p>(Ghi rõ họ và tên)</p>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">In Phiếu</button>
+    </div>
+</div>
+
+<script src="D:\VAS\test\json\NEWS2.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+</body>
+</html>

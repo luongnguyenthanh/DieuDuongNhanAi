@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Phân độ phù ấn lõm (Pitting Edema Scale)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- jQuery UI CSS (giữ nguyên từ CDN) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    
+    <!-- CSS tách riêng -->
+    <link rel="stylesheet" href="D:\VAS\test\styles\Phandophu.css">
+    
+    <!-- Google Fonts (giữ nguyên) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header-row">
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/Hr1BFctF/images.jpg" alt="Logo NVYT" />
+        </a>
+        <h1>BẢNG ĐÁNH GIÁ PHÂN ĐỘ PHÙ ẤN LÕM<br><small>(PITTING EDEMA SCALE)</small></h1>
+    </div>
+
+    <!-- PHẦN HÀNH CHÍNH -->
+    <div class="section">
+        <h3>PHẦN HÀNH CHÍNH</h3>
+        <div class="grid">
+            <div class="full">
+                <label>Tên bệnh nhân</label>
+                <input type="text" placeholder="Họ và tên">
+            </div>
+            <div class="full">
+                <div class="info-row">
+                    <div><label>Tuổi</label><input type="number"></div>
+                    <div><label>Giới tính</label>
+                        <select><option>Nam</option><option selected>Nữ</option></select>
+                    </div>
+                    <div><label>Ngày đánh giá</label>
+                        <input type="text" id="evalDate" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div><label>Thời điểm</label>
+                        <select><option>Bắt đầu</option><option selected>Giữa đợt</option><option>Cuối đợt</option></select>
+                    </div>
+                </div>
+            </div>
+            <div><label>Chẩn đoán</label><input type="text"></div>
+            <div><label>Người đánh giá</label><input type="text"></div>
+        </div>
+    </div>
+
+    <!-- PHẦN LƯỢNG GIÁ -->
+    <div class="section">
+        <h3>PHẦN ĐÁNH GIÁ PHÙ ẤN LÕM</h3>
+        <div class="qrow">
+            <span class="illustration">↓ Ấn ngón tay</span>
+            <div style="flex:1;">
+                <h4>Độ phù ấn lõm</h4>
+                <div class="desc">Ấn ngón tay cái vào vùng phù (thường cẳng chân/mắt cá) khoảng 5 giây rồi thả ra</div>
+            </div>
+            <select onchange="updateResult()" id="degreeSelect">
+                <option value="0" selected>Chọn độ phù...</option>
+                <option value="1">Độ 1 - Nhẹ</option>
+                <option value="2">Độ 2 - Trung bình</option>
+                <option value="3">Độ 3 - Nặng</option>
+                <option value="4">Độ 4 - Rất nặng</option>
+            </select>
+        </div>
+
+        <div style="background:#fff3f5; padding:12px; border-radius:8px; margin-top:12px; border:1px dashed #c2185b;">
+            <strong>Đặc điểm tham chiếu:</strong><br>
+            • Độ 1: Lõm <2 mm – Biến mất ngay lập tức<br>
+            • Độ 2: Lõm 2-4 mm – Biến mất trong 10-15 giây<br>
+            • Độ 3: Lõm 4-6 mm – Biến mất >1 phút<br>
+            • Độ 4: Lõm 6-8 mm – Biến mất 2-5 phút
+        </div>
+    </div>
+
+    <!-- KẾT QUẢ + CHỮ KÝ -->
+    <div class="bottom">
+        <div class="result" id="resultBox" style="display:none;">
+            <div style="font-size:15px;">ĐỘ PHÙ ẤN LÕM</div>
+            <div class="degree" id="degree">—</div>
+            <div class="level" id="level">Chưa đánh giá</div>
+        </div>
+
+        <div class="sign">
+            <h4>Người đánh giá ký tên</h4>
+            <p>(Ghi rõ họ và tên)</p>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">In Phiếu Đánh Giá</button>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+<script src="D:\VAS\test\json\Thangdophu.js"></script>
+
+</body>
+</html>

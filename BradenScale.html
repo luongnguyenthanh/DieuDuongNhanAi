@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Braden Scale</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="D:\VAS\test\styles\BradenScale.css">   <!-- file CSS tách riêng -->
+</head>
+<body>
+
+<div class="container">
+    <div class="header-row">
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/Hr1BFctF/images.jpg" alt="Logo NVYT" />
+        </a>
+        <h1>BẢNG ĐÁNH GIÁ NGUY CƠ LOÉT ÉP BRADEN<br><small>(BRADEN SCALE)</small></h1>
+    </div>
+
+    <!-- PHẦN HÀNH CHÍNH -->
+    <div class="section">
+        <h3>PHẦN HÀNH CHÍNH</h3>
+        <div class="grid">
+            <div class="full">
+                <label>Tên bệnh nhân</label>
+                <input type="text" placeholder="Họ và tên">
+            </div>
+            <div class="full">
+                <div class="info-row">
+                    <div><label>Tuổi</label><input type="number"></div>
+                    <div><label>Giới tính</label>
+                        <select><option>Nam</option><option selected>Nữ</option></select>
+                    </div>
+                    <div><label>Ngày đánh giá</label>
+                        <input type="text" id="evalDate" placeholder="dd/mm/yyyy">
+                    </div>
+                    <div><label>Thời điểm</label>
+                        <select><option>Bắt đầu</option><option selected>Giữa đợt</option><option>Cuối đợt</option></select>
+                    </div>
+                </div>
+            </div>
+            <div><label>Chẩn đoán</label><input type="text"></div>
+            <div><label>Người đánh giá</label><input type="text"></div>
+        </div>
+    </div>
+
+    <!-- PHẦN LƯỢNG GIÁ – SIÊU GỌN -->
+    <div class="section">
+        <h3>PHẦN LƯỢNG GIÁ</h3>
+        <div class="qrow"><h4>1. Nhận biết cảm giác</h4>
+            <select onchange="calc()" data-max="4">
+                <option value="1">1 - Hoàn toàn giới hạn</option>
+                <option value="2">2 - Rất giới hạn</option>
+                <option value="3">3 - Giới hạn nhẹ</option>
+                <option value="4" selected>4 - Không suy giảm</option>
+            </select>
+        </div>
+        <div class="qrow"><h4>2. Độ ẩm da</h4>
+            <select onchange="calc()" data-max="4">
+                <option value="1">1 - Luôn ẩm ẩm ướt</option>
+                <option value="2">2 - Thường xuyên ẩm ướt</option>
+                <option value="3">3 - Thỉnh thoảng ẩm ướt</option>
+                <option value="4" selected>4 - Hiếm khi ẩm</option>
+            </select>
+        </div>
+        <div class="qrow"><h4>3. Hoạt động</h4>
+            <select onchange="calc()" data-max="4">
+                <option value="1">1 - Nằm liệt giường</option>
+                <option value="2">2 - Đi bằng xe lăn</option>
+                <option value="3">3 - Đi lại ít</option>
+                <option value="4" selected>4 - Đi lại thường xuyên</option>
+            </select>
+        </div>
+        <div class="qrow"><h4>4. Khả năng vận động (di chuyển)</h4>
+            <select onchange="calc()" data-max="4">
+                <option value="1">1 - Bất động hoàn toàn</option>
+                <option value="2">2 - Rất giới hạn</option>
+                <option value="3">3 - Giới hạn nhẹ</option>
+                <option value="4" selected>4 - Không hạn chế</option>
+            </select>
+        </div>
+        <div class="qrow"><h4>5. Dinh dưỡng</h4>
+            <select onchange="calc()" data-max="4">
+                <option value="1">1 - Kém</option>
+                <option value="2">2 - Trung bình</option>
+                <option value="3">3 - Khá</option>
+                <option value="4" selected>4 - Tốt</option>
+            </select>
+        </div>
+        <div class="qrow"><h4>6. Ma sát & cắt lực</h4>
+            <select onchange="calc()" data-max="3">
+                <option value="1">1 - Có vấn đề</option>
+                <option value="2">2 - Vấn đề tiềm tàng</option>
+                <option value="3" selected>3 - Không có vấn đề gì</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- KẾT QUẢ + CHỮ KÝ -->
+    <div class="bottom">
+        <div class="result">
+            <div class="templat">TỔNG ĐIỂM BRADEN</div>
+            <div class="score" id="total">23</div>
+            <div class="level" id="level">NGUY CƠ RẤT THẤP</div>
+        </div>
+
+        <div class="sign">
+            <h4>Người đánh giá ký tên</h4>
+            <p>(Ghi rõ họ và tên)</p>
+            <div class="line"></div>
+        </div>
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">In Phiếu</button>
+    </div>
+</div>
+
+<script src="D:\VAS\test\json\BradenScale.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+
+</body>
+</html>

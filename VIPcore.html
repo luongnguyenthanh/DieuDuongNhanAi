@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thang điểm VIP - Đánh giá viêm tĩnh mạch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="D:\VAS\test\styles\VIPcore.css">
+</head>
+<body>
+
+<div class="vas-container">
+    <div class="header-row">
+        <a href="#" class="logo">
+            <img src="https://i.postimg.cc/Hr1BFctF/images.jpg" alt="Logo NVYT" />
+        </a>
+        <h1>THANG ĐIỂM VIP<br><small>Đánh giá mức độ viêm tĩnh mạch tại vị trí đặt kim truyền</small></h1>
+    </div>
+
+    <!-- Phần hành chính (giữ tương tự VAS) -->
+    <div class="section">
+        <h3>THÔNG TIN BỆNH NHÂN</h3>
+        <div class="info-grid">
+            <div class="info-full"><div class="info-row"><label>Họ và tên</label><input type="text" placeholder="Nhập họ và tên bệnh nhân"></div></div>
+            <div><div class="info-row"><label>Giới tính</label><select><option>Nam</option><option>Nữ</option></select></div></div>
+            <div><div class="info-row"><label>Ngày đánh giá</label><input type="text" id="date" readonly></div></div>
+            <div class="info-full"><div class="info-row"><label>Chọn khoa:</label>
+                <select>
+                <option>-- Mời Chọn khoa --</option>
+                <option>Khoa Cấp cứu</option>
+                <option>Khoa N1</option>
+                <option>Khoa N2</option>
+                <option>Khoa N3</option>
+                <option>Khoa N4</option>
+                <option>Nội B</option>
+                <option>Nội C</option>
+                <option>Nội D</option>
+                <option>Khoa TT/HIV</option>
+            </select></div></div>
+        </div>
+    </div>
+
+    <!-- Phần đánh giá VIP -->
+    <div class="section">
+        <h3>2. ĐÁNH GIÁ MỨC ĐỘ VIÊM TĨNH MẠCH (VIP Score)</h3>
+        <p>Quan sát vị trí đặt catheter và chọn mức độ phù hợp nhất:</p>
+
+        <div class="vip-options">
+            <label class="vip-option" data-score="0">
+                <span class="vip-score">0</span>
+                <span class="vip-desc">Vị trí đường truyền bình thường, không đỏ, không sưng, không đau</span>
+            </label>
+            <label class="vip-option" data-score="1">
+                <span class="vip-score">1</span>
+                <span class="vip-desc">Có 1 trong những dấu hiệu sau tại vị trí đường truyền: Đau nhẹ hoặc đỏ nhẹ</span>
+            </label>
+            <label class="vip-option" data-score="2">
+                <span class="vip-score">2</span>
+                <span class="vip-desc">Có 2 trong các dấu hiệu sau tại vị trí đường truyền: Đau + Tấy đỏ hoặc Sưng</span>
+            </label>
+            <label class="vip-option" data-score="3">
+                <span class="vip-score">3</span>
+                <span class="vip-desc">Đau dọc theo đường đi của kim luồn + Tấy đỏ + Sưng cứng xung quanh chân kim</span>
+            </label>
+            <label class="vip-option" data-score="4">
+                <span class="vip-score">4</span>
+                <span class="vip-desc">Đau dọc theo đường đi của kim luồn + Tấy đỏ + Sờ cứng xung quanh chân kim + TM nổi thành dây.</span>
+            </label>
+            <label class="vip-option" data-score="5">
+                <span class="vip-score">5</span>
+                <span class="vip-desc">Đau dọc theo đường đi của kim luồn + Tấy đỏ + Sờ cứng xung quanh chân kim + TM nổi thành dây + Sốt</span>
+            </label>
+        </div>
+    </div>
+
+    <!-- Kết quả -->
+    <div class="section result">
+        <h3>3. KẾT QUẢ VIP SCORE</h3>
+        <div>Mức độ viêm tĩnh mạch: <span id="result-score" class="result-input">Chưa chọn</span></div>
+        <div id="result-advice" style="margin-top:5px; font-size:15px; color:#555;"></div>
+
+        <div style="margin-top:10px;">
+            <h4>Người đánh giá ký tên</h4>
+            <div style="height:50px; border-bottom:3px solid #222; width:200px; margin:10px auto;"></div>
+        </div>
+    </div>
+
+    <div class="print-btn">
+        <button onclick="window.print()">In Phiếu VIP</button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+<script src="D:\VAS\test\json\VIPcore.js"></script>
+</body>
+</html>

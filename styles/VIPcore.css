@@ -1,0 +1,197 @@
+/* Giữ nguyên style cơ bản từ file VAS của bạn, chỉ chỉnh sửa phần cần thiết */
+* { box-sizing: border-box; margin:0; padding:0; }
+body { font-family: "Segoe UI", Tahoma, sans-serif; background:#f9fbfc; padding:15px; line-height:1.5; color:#2d3436;}
+.logo {
+    display: block;
+    flex-shrink: 0;
+}
+.logo img {
+    height: 60px;               /* chiều cao logo, điều chỉnh theo ý */
+    width: auto;                /* giữ tỷ lệ */
+    max-width: 180px;           /* giới hạn rộng nếu ảnh to */
+    object-fit: contain;        /* không méo */
+    transition: transform 0.3s;
+}
+.header-row {
+    display: flex;
+    align-items: center;          /* căn giữa theo chiều dọc */
+    justify-content: center;      /* căn giữa theo chiều ngang */
+    gap: 20px;                    /* khoảng cách giữa logo và tiêu đề */
+    margin-bottom: 24px;          /* khoảng cách với phần dưới */
+    flex-wrap: wrap;              /* nếu màn hình nhỏ quá thì xuống dòng */
+}
+
+.header-row h1 {
+    margin: 0;                    /* bỏ margin mặc định của h1 */
+    line-height: 1.2;
+    
+}
+
+.header-row .logo img {
+    height: 70px;                 /* tăng nhẹ chiều cao logo cho cân đối */
+    max-width: 200px;             /* điều chỉnh nếu logo quá to */
+}
+h1 {
+    text-align:center;
+    color:#c2185b;
+    font-size:24px;
+    margin-bottom:4px;
+    font-weight:700;
+}
+h1 small {
+    display:block;
+    font-size:15px;
+    color:#636e72;
+    margin-top:4px;
+}
+h2 {
+    text-align:center;
+    color:#c2185b;
+    font-size:24px;
+    margin-bottom:4px;
+    font-weight:700;
+}
+h2 small {
+    display:block;
+    font-size:15px;
+    color:#636e72;
+    margin-top:4px;
+}
+.vas-container {
+    max-width: 880px;
+    margin:auto;
+    background:#fff;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 6px 25px rgba(0,0,0,0.08);
+    border:1px solid #dfe6e9;
+    min-height: 100vh;
+}
+.section h3 {
+    color:#c2185b;
+    font-size:15px;
+    margin-bottom:8px;
+    padding-bottom:6px;
+    border-bottom:3px solid #c2185b;
+    display:inline-block;
+    font-weight:700;
+}
+.section h4 {
+    color:#c2185b;
+    font-size:14px;
+    margin:20px 0 8px;
+    font-weight:700;
+}
+
+.info-grid { display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.info-full { grid-column: 1 / -1; }
+.info-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    align-items: center;
+}
+label {
+    display:block;
+    margin-bottom:5px;
+    font-weight:600;
+}
+
+/* Phần VIP chính */
+.vip-options { margin:2px 0; }
+.vip-option {
+    margin:5px 0;
+    padding:5px;
+    border:1px solid #ddd;
+    border-radius:6px;
+    cursor:pointer;
+    transition: all 0.2s;
+}
+.vip-option:hover, .vip-option.selected {
+    background:#fff3e0;
+    border-color:#ff9800;
+}
+.vip-score {
+    font-size:20px; font-weight:bold; color:#d32f2f; margin-right:5px;
+}
+.vip-desc { font-size:14px; }
+.result { margin-top:10px; text-align:center; }
+.result-input {
+    font-size:20px; font-weight:bold; color:#d32f2f;
+    background:#fff8e1; border:2px solid #ff9800; padding:10px 10px;
+    display:inline-block; min-width:80px; border-radius:8px;
+}
+.print-btn {
+    text-align:center;
+    margin:28px 0 10px;
+}
+.print-btn button {
+    background:linear-gradient(135deg, #ec407a, #ab47bc);
+    color:white;
+    border:none;
+    padding:13px 55px;
+    font-size:17px;
+    font-weight:600;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:0 6px 20px rgba(194,24,91,0.4);
+}
+.print-btn button {
+  transition: all 0.3s ease;
+}
+.print-btn button:hover {
+  background: linear-gradient(135deg, #1565c0, #1e88e5);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 16px rgba(21, 101, 192, 0.4);
+
+}
+.print-btn button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+}
+.print-btn button:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: 0s;
+}
+    /* IN CHỈ 1 TRANG A4 */
+@media print {
+@page {
+    size: A4 portrait;
+    margin:10mm;
+}
+body {
+    background:white;
+    padding:0;
+    font-size:11pt;
+}
+.vas-container {
+    max-width:none;
+    box-shadow:none;
+    border:none;
+    padding:12mm;
+}
+.print-btn {
+    display:none;
+}
+.result { 
+    background:#ffffff !important; 
+    color:#000 !important; 
+    -webkit-print-color-adjust:exact; 
+    border:2px solid #c2185b;
+}
+}
