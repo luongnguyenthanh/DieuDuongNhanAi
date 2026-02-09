@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+    font-family: 'Roboto', sans-serif;
+    background:#f9fbfc;
+    padding:10px;
+    color:#2d3436;
+    line-height:1.4;
+
+}
+.container {
+    max-width: 880px;
+    margin:auto;
+    background:#fff;
+    padding:18px;
+    border-radius:12px;
+    box-shadow:0 6px 25px rgba(0,0,0,0.08);
+    border:1px solid #dfe6e9;
+    min-height: 100vh;
+}
+.logo {
+    display: block;
+    flex-shrink: 0;
+}
+.logo img {
+    height: 60px;               /* chiều cao logo, điều chỉnh theo ý */
+    width: auto;                /* giữ tỷ lệ */
+    max-width: 180px;           /* giới hạn rộng nếu ảnh to */
+    object-fit: contain;        /* không méo */
+    transition: transform 0.3s;
+}
+.header-row {
+    display: flex;
+    align-items: center;          /* căn giữa theo chiều dọc */
+    justify-content: center;      /* căn giữa theo chiều ngang */
+    gap: 20px;                    /* khoảng cách giữa logo và tiêu đề */
+    margin-bottom: 24px;          /* khoảng cách với phần dưới */
+    flex-wrap: wrap;              /* nếu màn hình nhỏ quá thì xuống dòng */
+}
+
+.header-row h1 {
+    margin: 0;                    /* bỏ margin mặc định của h1 */
+    text-align: left;             /* để chữ không bị giữa nếu muốn lệch trái */
+    line-height: 1.2;
+}
+
+.header-row .logo img {
+    height: 70px;                 /* tăng nhẹ chiều cao logo cho cân đối */
+    max-width: 200px;             /* điều chỉnh nếu logo quá to */
+}
+h1 {
+    text-align:center;
+    color:#c2185b;
+    font-size:24px;
+    margin-bottom:4px;
+    font-weight:700;
+}
+h1 small {
+    display:block;
+    font-size:15px;
+    color:#636e72;
+    margin-top:4px;
+}
+
+.section {
+    margin-bottom:18px;
+}
+.section h3 {
+    color:#c2185b;
+    font-size:17px;
+    margin-bottom:12px;
+    padding-bottom:5px;
+    border-bottom:3px solid #c2185b;
+    display:inline-block;
+    font-weight:700;
+}
+.section h4 {
+        color:#c2185b;
+        font-size:14px;
+        margin:20px 0 8px;
+        font-weight:700;
+}
+
+.info-grid { display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.info-full { grid-column: 1 / -1; }
+.info-row { display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 12px;
+    align-items: center;
+}
+label {
+    font-weight:600;
+    font-size:13px;
+    color:#2d3436;
+}
+input, select {
+    width:100%;
+    padding:9px 12px;
+    border:1.5px solid #b2bec3;
+    border-radius:8px;
+    font-size:12px;
+    background:#fdfdff;
+}
+input:focus, select:focus {
+    border-color:#c2185b;
+    outline:none;
+}
+
+.qrow {
+    display: flex;
+    align-items: center;
+    background:#f8f9fc;
+    padding:12px 14px;
+    border-radius:10px;
+    margin-bottom:10px;
+    border-left:5px solid #c2185b;
+    min-height:56px;
+}
+.qrow h4 {
+    flex:1;
+    font-size:13px;
+    color:#c2185b;
+    font-weight:600;
+    margin:0;
+    padding-right:16px;
+}
+
+.myselect {
+    position: relative;
+    width: 280px;
+    max-width: 100%;
+}
+.myselect .selected {
+    background: white;
+    padding: 11px 30px 11px 16px;
+    border: 1.5px solid #b2bec3;
+    border-radius: 10px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: normal;
+    line-height: 1.4;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+.myselect .selected:focus { border-color:#c2185b; }
+.myselect::after {
+    content: "▼";
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    font-size: 14px; color: #666;
+    pointer-events: none;
+}
+.myselect .options {
+    position: absolute;
+    top: 100%; left: 0;
+    right: 0;
+    background: white;
+    border: 1.5px solid #c2185b;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 99;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.myselect.open .options { display: block; }
+.myselect .options div {
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: normal;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+.myselect .options div:hover { background: #fdf0f5; }
+.myselect .options div:last-child { border-bottom: none; }
+.point {
+    min-width:32px;
+    height:32px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white; font-weight:500;
+    font-size:13px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.25);
+}
+.p0 { background:#4caf50; }
+.p5, .p10, .p15 { background:#ff9800; }
+.p20, .p25 { background:#ff5722; }
+.p30 { background:#d32f2f; }
+.bottom {
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin:20px 0;
+    gap:16px;
+    flex-wrap:wrap;
+}
+.result {
+    background: linear-gradient(135deg, #e91e63, #c2185b);
+    color:white;
+    padding:20px 12px;
+    border-radius:10px;
+    text-align:center;
+    width:300px;
+    box-shadow:0 10px 30px rgba(194,24,91,0.4);
+}
+.result .big {
+    font-size:36px;
+    font-weight:900;
+    margin:12px 0 8px;
+    line-height:1;
+}
+.result .level {
+    font-size:14px;
+    font-weight:700;
+}
+.sign {
+    width:320px;
+    text-align:center;
+    padding-top:4px;
+}
+.sign h4 {
+    color:#c2185b;
+    font-size:14px;
+    margin-bottom:4px;
+}
+.sign p {
+    color:#666;
+    font-style:italic;
+    margin-bottom:4px;
+    font-size:14px;
+}
+.sign .line {
+    height:80px;
+    border-bottom:1px solid #222;
+    width:220px;
+    margin:8px auto;
+}
+.print-btn {
+    text-align:center;
+    margin:24px 0 16px;
+}
+.print-btn {
+    text-align: center;
+    margin: 30px 0 20px;          /* tăng margin trên/dưới cho thoáng */
+}
+
+.print-btn button {
+    background: linear-gradient(135deg, #ec407a, #ab47bc);   /* hồng → tím */
+    color: white;
+    border: none;
+    border-radius: 50px;          /* giữ bo tròn đẹp như cũ */
+    padding: 14px 80px;           /* giữ kích thước lớn, dễ bấm */
+    font-size: 16px;
+    font-weight: 600;             /* hơi đậm hơn cho nổi bật */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    min-width: 220px;             /* tránh co lại quá khi text dài */
+}
+
+.print-btn button:hover {
+    background: linear-gradient(135deg, #1565c0, #1e88e5);   /* xanh dương đậm → sáng */
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 12px 24px rgba(21, 101, 192, 0.35);
+    color: #fff;
+}
+
+.print-btn button:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+}
+.print-btn button {
+    position: relative;
+    overflow: hidden;
+}
+
+.print-btn button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+}
+
+.print-btn button:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: 0s;
+}
+
+
+
+.intervention-list { 
+    font-size:13px; 
+    margin-top:12px; 
+    padding-left:0;
+    counter-reset: item;
+}
+.intervention-list li { 
+    margin-bottom:10px; 
+    padding-left:28px; 
+    position:relative; 
+    list-style: none;
+}
+.intervention-list li::before { 
+    content: counter(item) ". "; 
+    counter-increment: item; 
+    position:absolute; 
+    left:0; 
+    font-weight:bold; 
+    color:#c2185b;
+}
+@media print {
+@page {
+    size: A4 portrait;
+    margin: 10mm;
+}
+body { 
+    background:white; 
+    padding:0; 
+    font-size:11pt;
+    -webkit-print-color-adjust: exact; 
+    print-color-adjust: exact;
+}
+.container {
+    max-width:none;
+    box-shadow:none;
+    border:none;
+    padding:10mm;
+    margin:0;
+}
+.print-btn, .myselect::after { display:none !important; }
+.myselect .selected {
+    border:1.5px solid #c2185b !important;
+    background:white !important;
+    color:black !important;
+}
+    .point { color:#fff !important; }
+    .result {
+        background:#ffebee !important;
+        color:#000 !important;
+        border:2px solid #c2185b;
+        }
+    .bottom { margin:30px 0 !important; }
+}
+
+@media (max-width: 680px) {
+.qrow { flex-direction:column; align-items:stretch; min-height:auto; padding:14px; }
+.myselect { width:100%; margin-top:10px; }
+.point { margin:12px auto 0; }
+.bottom { flex-direction:column; align-items:center; }
+.result, .sign { width:100%; max-width:400px; }
+.info-grid { grid-template-columns: 1fr; }
+    }
