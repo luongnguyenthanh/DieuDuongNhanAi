@@ -4,7 +4,7 @@ $(function() {
         dateFormat: 'dd/mm/yy',
         changeMonth: true,
         changeYear: true,
-        yearRange: "1930:2030",
+        yearRange: "2025:2050",
         maxDate: 0,                   // Cách viết chuẩn để chặn ngày tương lai (0 ngày tính từ hôm nay)
         showButtonPanel: true,
         dayNamesMin: ["CN","T2","T3","T4","T5","T6","T7"],
