@@ -5,6 +5,9 @@
     <title>Braden Scale</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="styles/BradenScale.css"> 
 </head>
@@ -33,7 +36,7 @@
                         <select><option>Nam</option><option selected>Nữ</option></select>
                     </div>
                     <div><label>Ngày đánh giá</label>
-                        <input type="text" id="evalDate" placeholder="dd/mm/yyyy" readonly>
+                        <input type="text" id="evalDate" placeholder="dd/mm/yyyy" readonly style="cursor: pointer; background-color: #fff;">
                     </div>
                     <div><label>Thời điểm</label>
                         <select><option>Bắt đầu</option><option selected>Giữa đợt</option><option>Cuối đợt</option></select>
