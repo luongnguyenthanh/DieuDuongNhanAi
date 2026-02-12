@@ -1,4 +1,3 @@
-document.getElementById('date').value = new Date().toLocaleDateString('vi-VN');
 $(function() {
     // 1. Khởi tạo lịch Datepicker
     $("#evalDate").datepicker({
@@ -166,3 +165,4 @@ function saveToDriveAndPrint() {
     });
 
 }
+
