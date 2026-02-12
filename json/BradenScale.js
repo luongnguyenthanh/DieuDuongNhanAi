@@ -58,7 +58,7 @@ async function saveAndPrint() {
         const base64Content = pdfBase64.split(',')[1];
 
         // Gửi sang Google Apps Script (Netlify -> Google Drive)
-        await fetch(GOOGLE_SCRIPT_URL, {
+        await fetch(GOOGLE_SCRIPT_URL, {"https://script.google.com/macros/s/AKfycby73cl5gN8B_gYM-RnjgKj5xEEaV348sBv3xntmSMUa8r2tkwnVvxcM9VFohxxw44c/exec"
             method: 'POST',
             mode: 'no-cors', 
             body: JSON.stringify({
