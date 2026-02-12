@@ -1,5 +1,7 @@
 // BradenScale.js
-document.getElementById('date').value = new Date().toLocaleDateString('vi-VN');
+if(document.getElementById('date')) {
+    document.getElementById('date').value = new Date().toLocaleDateString('vi-VN');
+}
 
 function calc() {
     let t = 0;
