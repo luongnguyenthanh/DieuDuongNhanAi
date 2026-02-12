@@ -6,10 +6,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" href="styles/Morse.css">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
-
+<link rel="stylesheet" href="styles/Morse.css"> 
 
 </head>
 <body onload="calc()">
@@ -27,7 +27,7 @@
         <div class="info-grid">
             <div class="info-full"><div class="info-row"><label>Họ và tên</label><input type="text" placeholder="Nhập họ và tên bệnh nhân"></div></div>
             <div><div class="info-row"><label>Giới tính</label><select><option>Nam</option><option>Nữ</option></select></div></div>
-            <div><div class="info-row"><label>Ngày đánh giá</label><input type="text" id="evalDate" readonly style="cursor: pointer; background-color: #fff;">
+            <div><div class="info-row"><label>Ngày đánh giá</label><input type="text" id="evalDate" readonly style="cursor: pointer; background-color: #fff;"></div></div>
             <div class="info-full"><div class="info-row"><label>Chọn khoa:</label>
                 <select>
                 <option>-- Mời Chọn khoa --</option>
@@ -142,13 +142,10 @@
         <div class="line"></div>
     </div>
     <div class="print-btn">
-        <button onclick="saveToDriveAndPrint()">In Phiếu</button>
+        <button onclick="window.print()">In Phiếu</button>
     </div>
 </div>
 
-<script src="D:\dieuduongnhanai\json\Morse.js"></script>
+<script src="json/Morse.js"></script>
 </body>
-
 </html>
-
-
