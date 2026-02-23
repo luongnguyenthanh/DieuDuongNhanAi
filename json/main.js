@@ -154,7 +154,7 @@ function openToolModal(title, url) {
   document.getElementById('toolModal').style.display = 'flex';
 }
 
-// Đóng modal và reset iframe (tránh load lại không cần thiết)
+// Đóng modal và reset iframe
 function closeModal() {
   document.getElementById('toolModal').style.display = 'none';
   document.getElementById('toolIframe').src = 'about:blank';
@@ -200,57 +200,12 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
-// Modal lịch sử hình thành
-function openHistoryModal() {
-    const modal = document.getElementById('historyModal');
-    const iframe = document.getElementById('historyIframe');
-    if (modal && iframe) {
-        iframe.src = 'lich-su-hinh-thanh.html';
-        modal.style.display = 'flex';
-    }
-}
-
-function closeHistoryModal() {
-    const modal = document.getElementById('historyModal');
-    if (modal) {
-        modal.style.display = 'none';
-    }
-    // Reset iframe để tiết kiệm tài nguyên
-    const iframe = document.getElementById('historyIframe');
-    if (iframe) {
-        iframe.src = 'about:blank';
-    }
-}
-
-//Modal thành tựu
-function openAchievementModal() {
-    const modal = document.getElementById('AchievementModal');
-    const iframe = document.getElementById('AchievementIframe');
-    if (modal && iframe) {
-        iframe.src = 'cac-thanh-tuu.html';
-        modal.style.display = 'flex';
-    }
-}
-
-function closeAchievementModal() {
-    const modal = document.getElementById('AchievementModal');
-    const iframe = document.getElementById('AchievementIframe');
-    if (modal) modal.style.display = 'none';
-    if (iframe) iframe.src = 'about:blank';
-}
-
-// Đóng modal Achievement khi click bên ngoài
-document.getElementById('AchievementModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeAchievementModal();
-    }
+// Mở modal cho Lịch sử hình thành
+document.getElementById('btn-lich-su')?.addEventListener('click', function() {
+    openToolModal('Lịch sử hình thành Bệnh viện Nhân Ái', 'lich-su-hinh-thanh.html');
 });
 
-// Đóng bằng Esc (cập nhật để hỗ trợ cả 3 modal)
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        if (document.getElementById('toolModal')?.style.display === 'flex') closeModal();
-        if (document.getElementById('historyModal')?.style.display === 'flex') closeHistoryModal();
-        if (document.getElementById('AchievementModal')?.style.display === 'flex') closeAchievementModal();
-    }
+// Mở modal cho Các thành tựu
+document.getElementById('btn-thanh-tuu')?.addEventListener('click', function() {
+    openToolModal('Các thành tựu nổi bật', 'cac-thanh-tuu.html');
 });
