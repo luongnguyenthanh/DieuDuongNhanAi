@@ -926,3 +926,71 @@ nav.main-nav {
 .subsubmenu::-webkit-scrollbar-track {
     background: #2d3436;
 }
+
+/* Lịch sử hình thanhfh */
+/* CSS cho modal popup Lịch sử hình thành */
+.history-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+}
+.history-modal-content {
+    background-color: #fefefe;
+    margin: 8% auto;
+    padding: 25px;
+    border: 1px solid #888;
+    width: 85%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    position: relative;
+}
+.history-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #c2185b;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.history-modal-header h2 {
+    margin: 0;
+    color: #c2185b;
+    font-size: 28px;
+}
+.close-history {
+    color: #aaa;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.close-history:hover,
+.close-history:focus {
+    color: #c2185b;
+    text-decoration: none;
+}
+.history-content {
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+    text-align: justify;
+}
+.history-content strong {
+    color: #c2185b;
+}
+@media (max-width: 768px) {
+.history-modal-content {
+    margin: 10% auto;
+    width: 92%;
+    padding: 20px;
+}
+.history-modal-header h2 {
+    font-size: 24px;
+}
+}
