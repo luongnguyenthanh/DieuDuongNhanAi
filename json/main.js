@@ -199,3 +199,58 @@ document.addEventListener('keydown', function(e) {
     closeModal();
   }
 });
+
+// Modal lịch sử hình thành
+function openHistoryModal() {
+    const modal = document.getElementById('historyModal');
+    const iframe = document.getElementById('historyIframe');
+    if (modal && iframe) {
+        iframe.src = 'lich-su-hinh-thanh.html';
+        modal.style.display = 'flex';
+    }
+}
+
+function closeHistoryModal() {
+    const modal = document.getElementById('historyModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+    // Reset iframe để tiết kiệm tài nguyên
+    const iframe = document.getElementById('historyIframe');
+    if (iframe) {
+        iframe.src = 'about:blank';
+    }
+}
+
+//Modal thành tựu
+function openAchievementModal() {
+    const modal = document.getElementById('AchievementModal');
+    const iframe = document.getElementById('AchievementIframe');
+    if (modal && iframe) {
+        iframe.src = 'cac-thanh-tuu.html';
+        modal.style.display = 'flex';
+    }
+}
+
+function closeAchievementModal() {
+    const modal = document.getElementById('AchievementModal');
+    const iframe = document.getElementById('AchievementIframe');
+    if (modal) modal.style.display = 'none';
+    if (iframe) iframe.src = 'about:blank';
+}
+
+// Đóng modal Achievement khi click bên ngoài
+document.getElementById('AchievementModal')?.addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeAchievementModal();
+    }
+});
+
+// Đóng bằng Esc (cập nhật để hỗ trợ cả 3 modal)
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (document.getElementById('toolModal')?.style.display === 'flex') closeModal();
+        if (document.getElementById('historyModal')?.style.display === 'flex') closeHistoryModal();
+        if (document.getElementById('AchievementModal')?.style.display === 'flex') closeAchievementModal();
+    }
+});
