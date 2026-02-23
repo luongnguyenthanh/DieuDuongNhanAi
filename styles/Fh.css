@@ -1,0 +1,57 @@
+.modal-header-bar {
+    display: flex;
+    align-items: center;           
+    justify-content: center; 
+    width: 100%;
+    padding: 15px 25px;
+    background: #fff;            
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 8px 8px 0 0;     /* bo góc trên nếu modal có bo góc */
+}
+
+.logo img {
+    max-height: 60px;               /* điều chỉnh kích thước logo */
+    width: auto;
+}
+
+.history-modal-header {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #c2185b;
+    display: flex;
+    align-items: center;
+    gap: 20px;                      /* khoảng cách giữa chữ và nút × */
+}
+
+.close-history {
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #e74c3c;
+    transition: color 0.2s;
+}
+
+.close-history:hover {
+    color: #c0392b;
+}
+.content,
+.history-modal-content {
+    padding: 2.5rem;
+    text-align: justify;          /* căn đều */
+}
+
+.history-content p {
+    text-align: justify;
+    text-justify: inter-word;     /* phân bố khoảng trắng đều giữa các từ */
+    margin-bottom: 1.2rem;
+    line-height: 1.8;             /* tăng khoảng cách dòng cho dễ đọc hơn */
+    hyphens: auto;                /* hỗ trợ ngắt từ tiếng Việt */
+    -webkit-hyphens: auto;        /* cho Safari */
+    -ms-hyphens: auto;            /* cho IE/Edge */
+}
+
+/* Nếu có danh sách ul trong nội dung */
+.history-content ul {
+    padding-left: 1.8rem;
+    margin: 1rem 0;
+}
